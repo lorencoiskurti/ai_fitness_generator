@@ -17,3 +17,30 @@ instance/
 
 # IDE specific files (e.g., VS Code)
 .vscode/
+.idea/
+
+# Node / React / NPM
+node_modules/
+npm-debug.log
+yarn-error.log
+.npm
+.eslintcache
+
+# Vite
+.vite/
+dist/
+*.local
+
+# React build
+static/react/dist/
+static/react/build/
+static/react/.vite/
+static/react/node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
