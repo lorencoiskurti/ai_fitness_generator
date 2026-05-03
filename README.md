@@ -38,26 +38,30 @@ Visit `http://localhost:5173` (frontend) or `http://localhost:5000` (backend API
 
 ## 📋 Features
 
-✅ **AI-Powered Plans** - Google Gemini generates custom meal & workout plans
+✅ **AI-Powered Plans** - Google Gemini 2.5 Flash generates custom meal & workout plans
 ✅ **Real-time Metrics** - Live BMI & TDEE calculation as you type
 ✅ **User Authentication** - Secure registration, login, password hashing
+✅ **Subscription System** - Monthly/yearly subscription plans with expiry tracking
+✅ **Payment Integration** - Demo payment page with plan selection
+✅ **Dark Mode** - Complete dark theme with animated theme toggle (sun/moon icons)
 ✅ **Plan Management** - Save, edit, delete, and expand plan details
-✅ **Modern UI** - Responsive design with Tailwind CSS & animations
-✅ **Toast Notifications** - Real-time feedback for all actions
+✅ **Modern UI** - Responsive design with Tailwind CSS & smooth animations
+✅ **Toast Notifications** - Real-time feedback for all actions with dark mode support
 ✅ **Error Boundaries** - Graceful error handling across the app
 ✅ **Loading States** - Skeleton loaders & spinners for better UX
-✅ **Mobile Menu** - Hamburger navigation for small screens
+✅ **Mobile Menu** - Hamburger navigation with visible title on all screen sizes
 ✅ **Production Ready** - Optimized builds, code splitting, caching
 
 ## 🛠️ Tech Stack
 
 | Layer | Technologies |
 |-------|--------------|
-| **Frontend** | React 18 + TypeScript + Vite + Tailwind CSS |
+| **Frontend** | React 18 + TypeScript + Vite + Tailwind CSS + Dark Mode |
 | **Backend** | Flask + SQLAlchemy + Flask-Login + Flask-CORS |
-| **AI** | Google Gemini 1.5 Flash API |
-| **Database** | SQLite (development) / PostgreSQL (production) |
+| **AI** | Google Gemini 2.5 Flash API |
+| **Database** | SQLite (with subscription support) |
 | **Authentication** | Flask-Login + password hashing |
+| **Styling** | Tailwind CSS + custom animations + dark theme toggle |
 
 ## 📁 Project Structure
 
@@ -87,34 +91,55 @@ FitnessAI/
 
 ### Backend API Endpoints
 
+**Authentication**
 ```
-POST   /api/check-auth              Check authentication status
-POST   /login                        User login
-POST   /register                     User registration
-POST   /logout                       User logout
+GET    /api/check-auth              Check authentication status + subscription
+POST   /api/register                User registration
+POST   /api/login                   User login
+POST   /api/logout                  User logout
+```
 
-POST   /generate_plan                Generate new fitness plan
-GET    /api/plans                    Get all user's plans
-GET    /api/plans/<id>              Get specific plan
-PUT    /api/plans/<id>              Update plan
-DELETE /api/plans/<id>              Delete plan
+**Plan Management**
+```
+POST   /api/generate_plan           Generate new fitness plan (requires subscription)
+GET    /api/plans                   Get all user's plans
+GET    /api/plans/<id>             Get specific plan
+PUT    /api/plans/<id>             Update/regenerate plan
+DELETE /api/plans/<id>             Delete plan
+```
+
+**Subscription**
+```
+GET    /api/subscription            Get subscription status
+POST   /api/subscription/activate   Activate subscription (monthly/yearly)
+POST   /api/subscription/cancel     Cancel active subscription
 ```
 
 ### Frontend Pages
 
 - **Home** (`/`) - Landing page with hero and features
-- **Login** (`/login`) - User authentication
+- **Login** (`/login`) - User authentication with dark mode support
 - **Register** (`/register`) - Account creation
-- **Generate** (`/generate`) - Plan creation form with real-time BMI/TDEE
-- **Results** (`/results`) - Display generated plans
-- **Plans** (`/plans`) - Manage saved plans
+- **Generate** (`/generate`) - Plan creation form with real-time BMI/TDEE (subscription gated)
+- **Results** (`/results`) - Display generated meal & workout plans
+- **Plans** (`/plans`) - Manage and edit saved plans
+- **Payment** (`/payment`) - Subscription purchase with pricing tiers
+- **Subscription** (`/subscription`) - Manage active subscription
 
 ## 📊 Key Implementation Details
+
+### Subscription System
+- **Free tier** - Users can register but cannot generate plans
+- **Premium tiers** - Monthly ($9.99) or Yearly ($79.99) subscriptions
+- **Automatic expiry** - Subscriptions automatically expire after period ends
+- **Instant gating** - Non-subscribed users see upsell banner and are redirected to `/payment`
+- **Server-side validation** - Subscription status checked on every plan generation request
 
 ### Real-time BMI/TDEE Calculation
 The GeneratePlanPage calculates metrics live as users type, matching backend formulas:
 - **BMI** = weight_kg / (height_m²)
 - **TDEE** = BMR × activity_multiplier
+- **BMR formulas** - Different calculations for male/female based on age, weight, height
 
 ### Error Handling
 - **Error Boundary** catches React component errors
@@ -122,18 +147,29 @@ The GeneratePlanPage calculates metrics live as users type, matching backend for
 - **API error handler** intercepts 401, 403, 500 responses
 - **Form validation** with reusable utility functions
 
+### Dark Mode Implementation
+- **Theme toggle** - Animated sun/moon icons in header for instant theme switching
+- **Persistent preference** - Theme choice saved in localStorage
+- **Comprehensive styling** - Dark mode colors applied to all components
+- **Custom form autofill** - Fixed browser autofill styling for both themes
+- **Toast notifications** - Dark-themed notifications with appropriate opacity
+- **Prose content** - Numbered items styled in purple for visibility in both themes
+
 ### Authentication Flow
 1. User registers/logs in via form submission
 2. Flask validates credentials and sets session
-3. `useAuth` context stores user state
+3. `useAuth` context stores user state + subscription status
 4. `ProtectedRoute` guards authenticated pages
 5. 401 responses trigger redirect to `/login`
+6. Subscription status auto-checked on every auth refresh
 
 ### Styling Strategy
-- **Tailwind CSS** for utility-first styling
+- **Tailwind CSS** for utility-first styling with consistent color palette
 - **Custom animations** in index.css for fade-in, slide effects
 - **Responsive design** with mobile-first approach
-- **Dark mode support** via Tailwind theme extension
+- **Dark mode support** with animated sun/moon theme toggle
+- **Theme persistence** via localStorage
+- **Comprehensive dark mode** covering all components (inputs, toasts, modals, cards)
 
 ## 🚀 Production Deployment
 
@@ -159,12 +195,13 @@ pip install gunicorn
 gunicorn app:app --bind 0.0.0.0:5000
 ```
 
-### Platforms
-- Heroku: `git push heroku main`
-- AWS Elastic Beanstalk
-- DigitalOcean App Platform
-- Render
-- PythonAnywhere
+### Cloud Deployment Platforms
+- **Railway.app** - Recommended (free tier, easy GitHub integration)
+- **Render.com** - Free tier available
+- **Heroku** - `git push heroku main` (paid)
+- **AWS Elastic Beanstalk** - Enterprise option
+- **DigitalOcean App Platform** - VPS alternative
+- **PythonAnywhere** - Python-specific hosting
 
 ## 🐛 Troubleshooting
 
