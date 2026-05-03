@@ -1,15 +1,13 @@
-# AI Fitness Generator - Modern React + Flask
+# AI Fitness Generator - React + Flask
 
-A production-ready full-stack web application that generates personalized fitness and meal plans using Google's Gemini AI. Features a React SPA with TypeScript frontend and Flask REST API backend.
-
-**Video Demo:** https://youtu.be/DEKg8PDQjMM
+A production-ready full-stack web application that generates personalized fitness and meal plans using Google's Gemini AI. Features a React SPA with TypeScript frontend, Flask REST API backend, subscription system, and complete dark mode support.
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 - Python 3.9+
 - Node.js 16+
-- Google Gemini API key
+- Google Gemini API key (get it free at https://aistudio.google.com/app/apikey)
 
 ### Installation & Running
 
@@ -38,30 +36,27 @@ Visit `http://localhost:5173` (frontend) or `http://localhost:5000` (backend API
 
 ## 📋 Features
 
-✅ **AI-Powered Plans** - Google Gemini 2.5 Flash generates custom meal & workout plans
+✅ **AI-Powered Plans** - Google Gemini generates custom meal & workout plans
 ✅ **Real-time Metrics** - Live BMI & TDEE calculation as you type
 ✅ **User Authentication** - Secure registration, login, password hashing
-✅ **Subscription System** - Monthly/yearly subscription plans with expiry tracking
-✅ **Payment Integration** - Demo payment page with plan selection
-✅ **Dark Mode** - Complete dark theme with animated theme toggle (sun/moon icons)
-✅ **Plan Management** - Save, edit, delete, and expand plan details
-✅ **Modern UI** - Responsive design with Tailwind CSS & smooth animations
-✅ **Toast Notifications** - Real-time feedback for all actions with dark mode support
-✅ **Error Boundaries** - Graceful error handling across the app
-✅ **Loading States** - Skeleton loaders & spinners for better UX
-✅ **Mobile Menu** - Hamburger navigation with visible title on all screen sizes
-✅ **Production Ready** - Optimized builds, code splitting, caching
+✅ **Subscription System** - Monthly/Yearly premium plans with limitations
+✅ **Plan Management** - Save, edit, delete, and manage saved plans
+✅ **Dark Mode** - Complete dark theme with animated toggle & persistent preference
+✅ **Responsive Design** - Mobile-first design for all devices
+✅ **Modern UI** - Beautiful interface with Tailwind CSS & smooth animations
+✅ **Toast Notifications** - Real-time feedback for all user actions
+✅ **Error Handling** - Graceful error handling throughout the app
 
 ## 🛠️ Tech Stack
 
 | Layer | Technologies |
 |-------|--------------|
-| **Frontend** | React 18 + TypeScript + Vite + Tailwind CSS + Dark Mode |
+| **Frontend** | React 18 + TypeScript + Vite + Tailwind CSS |
 | **Backend** | Flask + SQLAlchemy + Flask-Login + Flask-CORS |
 | **AI** | Google Gemini 2.5 Flash API |
-| **Database** | SQLite (with subscription support) |
+| **Database** | SQLite |
 | **Authentication** | Flask-Login + password hashing |
-| **Styling** | Tailwind CSS + custom animations + dark theme toggle |
+| **Styling** | Tailwind CSS with dark mode support |
 
 ## 📁 Project Structure
 
@@ -70,21 +65,21 @@ FitnessAI/
 ├── app.py                              # Flask REST API
 ├── requirements.txt                    # Python dependencies
 ├── .env                               # Environment variables
+├── site.db                            # SQLite database
 │
 ├── static/
 │   └── react/                         # React SPA
 │       ├── src/
-│       │   ├── components/           # UI components (Button, Header, Toast, etc)
+│       │   ├── components/           # UI components (Header, Footer, ThemeToggle, etc)
 │       │   ├── pages/               # Page components (HomePage, GeneratePlanPage, etc)
 │       │   ├── services/            # API & auth services
-│       │   ├── hooks/               # useAuth, useToast
-│       │   ├── utils/               # Validation utilities
-│       │   └── types/               # TypeScript interfaces
+│       │   ├── hooks/               # Custom hooks (useAuth, useToast, useTheme)
+│       │   ├── utils/               # Validation & helper utilities
+│       │   └── index.css            # Global styles
 │       ├── dist/                    # Production build output
 │       └── package.json
 │
-└── plans/
-    └── witty-swimming-waffle.md      # Development documentation
+└── PROJECT_PRESENTATION_GUIDE.md      # Detailed feature documentation
 ```
 
 ## 🔧 Development
@@ -93,83 +88,71 @@ FitnessAI/
 
 **Authentication**
 ```
-GET    /api/check-auth              Check authentication status + subscription
-POST   /api/register                User registration
-POST   /api/login                   User login
-POST   /api/logout                  User logout
+POST   /api/register                 User registration
+POST   /api/login                    User login
+POST   /api/logout                   User logout
+GET    /api/check-auth               Check authentication status
 ```
 
-**Plan Management**
+**Plans**
 ```
-POST   /api/generate_plan           Generate new fitness plan (requires subscription)
-GET    /api/plans                   Get all user's plans
-GET    /api/plans/<id>             Get specific plan
-PUT    /api/plans/<id>             Update/regenerate plan
-DELETE /api/plans/<id>             Delete plan
+POST   /api/generate_plan            Generate new fitness plan (requires subscription)
+GET    /api/plans                    Get all user's plans
+GET    /api/plans/<id>              Get specific plan
+PUT    /api/plans/<id>              Update plan
+DELETE /api/plans/<id>              Delete plan
 ```
 
 **Subscription**
 ```
-GET    /api/subscription            Get subscription status
-POST   /api/subscription/activate   Activate subscription (monthly/yearly)
-POST   /api/subscription/cancel     Cancel active subscription
+GET    /api/subscription             Check subscription status
+POST   /api/subscription/activate    Start subscription
+POST   /api/subscription/cancel      Cancel subscription
 ```
 
 ### Frontend Pages
 
-- **Home** (`/`) - Landing page with hero and features
-- **Login** (`/login`) - User authentication with dark mode support
+- **Home** (`/`) - Landing page with features and CTA
+- **Login** (`/login`) - User authentication
 - **Register** (`/register`) - Account creation
-- **Generate** (`/generate`) - Plan creation form with real-time BMI/TDEE (subscription gated)
-- **Results** (`/results`) - Display generated meal & workout plans
-- **Plans** (`/plans`) - Manage and edit saved plans
-- **Payment** (`/payment`) - Subscription purchase with pricing tiers
+- **Generate** (`/generate`) - Plan creation form with real-time BMI/TDEE
+- **Results** (`/results`) - Display generated fitness & meal plans
+- **Plans** (`/plans`) - View and manage saved plans
+- **Payment** (`/payment`) - Subscription plan selection
 - **Subscription** (`/subscription`) - Manage active subscription
 
 ## 📊 Key Implementation Details
 
-### Subscription System
-- **Free tier** - Users can register but cannot generate plans
-- **Premium tiers** - Monthly ($9.99) or Yearly ($79.99) subscriptions
-- **Automatic expiry** - Subscriptions automatically expire after period ends
-- **Instant gating** - Non-subscribed users see upsell banner and are redirected to `/payment`
-- **Server-side validation** - Subscription status checked on every plan generation request
-
 ### Real-time BMI/TDEE Calculation
 The GeneratePlanPage calculates metrics live as users type, matching backend formulas:
 - **BMI** = weight_kg / (height_m²)
-- **TDEE** = BMR × activity_multiplier
-- **BMR formulas** - Different calculations for male/female based on age, weight, height
+- **TDEE** = BMR × activity_multiplier (Mifflin-St Jeor formula)
 
-### Error Handling
-- **Error Boundary** catches React component errors
-- **Toast notifications** show success/error/warning messages
-- **API error handler** intercepts 401, 403, 500 responses
-- **Form validation** with reusable utility functions
-
-### Dark Mode Implementation
-- **Theme toggle** - Animated sun/moon icons in header for instant theme switching
-- **Persistent preference** - Theme choice saved in localStorage
-- **Comprehensive styling** - Dark mode colors applied to all components
-- **Custom form autofill** - Fixed browser autofill styling for both themes
-- **Toast notifications** - Dark-themed notifications with appropriate opacity
-- **Prose content** - Numbered items styled in purple for visibility in both themes
+### Dark Mode System
+- **Theme Toggle** - Animated sun/moon icon button in header
+- **Persistent Preference** - User theme choice saved to localStorage
+- **Complete Coverage** - All components styled with dark mode variants
+- **Smooth Transitions** - CSS transitions for theme switching
 
 ### Authentication Flow
 1. User registers/logs in via form submission
-2. Flask validates credentials and sets session
-3. `useAuth` context stores user state + subscription status
+2. Flask validates credentials and creates session
+3. `useAuth` context stores user state globally
 4. `ProtectedRoute` guards authenticated pages
-5. 401 responses trigger redirect to `/login`
-6. Subscription status auto-checked on every auth refresh
+5. 401 responses trigger automatic redirect to `/login`
+
+### Subscription System
+- Free tier: Limited plan generations (controlled server-side)
+- Monthly plan: Unlimited plans for 30 days
+- Yearly plan: Unlimited plans for 365 days
+- Subscription status checked on every plan generation
 
 ### Styling Strategy
-- **Tailwind CSS** for utility-first styling with consistent color palette
-- **Custom animations** in index.css for fade-in, slide effects
-- **Responsive design** with mobile-first approach
-- **Dark mode support** with animated sun/moon theme toggle
-- **Theme persistence** via localStorage
-- **Comprehensive dark mode** covering all components (inputs, toasts, modals, cards)
+- **Tailwind CSS** for utility-first responsive styling
+- **Custom animations** in index.css for smooth effects
+- **Mobile-first approach** - responsive from 320px+
+- **Dark mode** - via Tailwind's dark: prefix classes
+- **Webkit autofill** - custom styling for browser password fields
 
 ## 🚀 Production Deployment
 
@@ -177,6 +160,7 @@ The GeneratePlanPage calculates metrics live as users type, matching backend for
 ```bash
 cd static/react
 npm run build
+cd ../..
 ```
 
 Output goes to `static/react/dist/` and Flask serves it automatically.
@@ -186,7 +170,6 @@ Output goes to `static/react/dist/` and Flask serves it automatically.
 GOOGLE_API_KEY=your_production_key
 FLASK_ENV=production
 SECRET_KEY=your_secure_secret_key
-DATABASE_URL=postgresql://...  # For prod database
 ```
 
 ### Deploy with Gunicorn
@@ -195,31 +178,35 @@ pip install gunicorn
 gunicorn app:app --bind 0.0.0.0:5000
 ```
 
-### Cloud Deployment Platforms
-- **Railway.app** - Recommended (free tier, easy GitHub integration)
-- **Render.com** - Free tier available
-- **Heroku** - `git push heroku main` (paid)
-- **AWS Elastic Beanstalk** - Enterprise option
-- **DigitalOcean App Platform** - VPS alternative
-- **PythonAnywhere** - Python-specific hosting
+### Platforms
+- Heroku: `git push heroku main`
+- AWS Elastic Beanstalk
+- DigitalOcean App Platform
+- Render
+- PythonAnywhere
+
+## 🌙 Dark Mode
+
+Click the animated sun/moon icon in the header to toggle between light and dark themes. Your preference is automatically saved and restored on next visit.
 
 ## 🐛 Troubleshooting
 
 ### "Cannot POST /generate_plan"
 - Ensure you're logged in (check `/api/check-auth`)
-- Verify Flask is running on port 5000
-- Check Network tab in browser DevTools
+- Verify you have an active subscription
+- Check Flask is running on port 5000
 
 ### "CORS error"
-- Both servers must be running (Flask + Vite)
-- Check `CORS` config in app.py line 23
+- Both Flask and React dev server must be running
+- Check CORS config is enabled in app.py
+- Verify React dev server is on port 5173
 
 ### "Missing GOOGLE_API_KEY"
 - Create `.env` file in project root
 - Add your actual Gemini API key
-- Restart Flask
+- Restart Flask for changes to take effect
 
-### Port already in use
+### "Port already in use"
 ```bash
 # Kill process on port 5000
 lsof -ti :5000 | xargs kill -9
@@ -228,19 +215,10 @@ netstat -ano | findstr :5000
 taskkill /PID <PID> /F
 ```
 
-## 📈 Performance Optimizations
-
-✨ **React Optimizations**
-- Code splitting with Vite
-- Lazy loading components
-- Memoization of expensive computations
-- LocalStorage for session data
-
-⚡ **Backend Optimizations**
-- Database query optimization
-- Request validation
-- Error logging
-- CORS caching headers
+### "Plans not generating"
+- Ensure you have an active subscription
+- Verify Google API key is valid and has quota remaining
+- Check Flask terminal for error messages
 
 ## 🔐 Security Considerations
 
@@ -250,26 +228,22 @@ taskkill /PID <PID> /F
 - Input validation on both client & server
 - API key stored in environment variables
 - SQL injection prevention via SQLAlchemy ORM
+- Subscription verification on every paid feature request
 
-## 📚 Additional Resources
+## 📈 Performance Optimizations
 
-- [Flask Documentation](https://flask.palletsprojects.com/)
-- [React Documentation](https://react.dev/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Google Gemini API](https://ai.google.dev/)
-- [Development Plan](plans/witty-swimming-waffle.md)
+✨ **React Optimizations**
+- Code splitting with Vite
+- Lazy loading of page components
+- Component memoization where beneficial
+- LocalStorage for session persistence
+
+⚡ **Backend Optimizations**
+- Database query optimization
+- Request validation
+- Response caching headers
+- Efficient password hashing
 
 ## 📄 License
 
-Open source - MIT License
-
-## 🎓 Learning Resources
-
-Built as a demonstration of:
-- Modern React patterns (hooks, context, custom hooks)
-- TypeScript best practices
-- REST API design with Flask
-- Full-stack authentication
-- Component-based architecture
-- Error handling & validation
-- Responsive web design
+MIT License
