@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './hooks/useAuth';
 import { ToastProvider } from './hooks/useToast';
+import { ThemeProvider } from './hooks/useTheme';
 import ErrorBoundary from './components/ErrorBoundary';
 import ToastContainer from './components/Toast';
 import HomePage from './pages/HomePage';
@@ -15,11 +16,12 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
-    <ErrorBoundary>
-      <AuthProvider>
-        <ToastProvider>
-          <BrowserRouter>
-            <div className="min-h-screen bg-gray-50">
+    <ThemeProvider>
+      <ErrorBoundary>
+        <AuthProvider>
+          <ToastProvider>
+            <BrowserRouter>
+              <div className="min-h-screen bg-gray-50 dark:bg-slate-950">
               <Routes>
                 {/* Public routes */}
                 <Route path="/" element={<HomePage />} />
@@ -73,10 +75,11 @@ function App() {
               </Routes>
               <ToastContainer />
             </div>
-          </BrowserRouter>
-        </ToastProvider>
-      </AuthProvider>
-    </ErrorBoundary>
+            </BrowserRouter>
+          </ToastProvider>
+        </AuthProvider>
+      </ErrorBoundary>
+    </ThemeProvider>
   );
 }
 

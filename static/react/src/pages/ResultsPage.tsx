@@ -42,7 +42,7 @@ export default function ResultsPage() {
     return (
       <Layout>
         <main className="container mx-auto px-6 py-12">
-          <p className="text-center text-gray-600">Loading...</p>
+          <p className="text-center text-gray-600 dark:text-gray-400">Loading...</p>
         </main>
       </Layout>
     );
@@ -55,18 +55,18 @@ export default function ResultsPage() {
   return (
     <Layout>
       <main className="container mx-auto px-6 py-8">
-        <h1 className="text-4xl font-bold text-center text-gray-900 mb-8">Your Personalized Plan</h1>
+        <h1 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-8">Your Personalized Plan</h1>
 
         {/* User Summary Card */}
-        <section className="bg-white rounded-lg shadow-md p-8 border border-gray-200 mb-8">
-          <h2 className="text-2xl font-bold text-purple-600 mb-6">Your Profile</h2>
+        <section className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-8 border border-gray-200 dark:border-slate-700 mb-8">
+          <h2 className="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-6">Your Profile</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
             {Object.entries(planData.user_data).map(([key, value]) => (
-              <div key={key} className="bg-gray-50 rounded-lg p-4">
-                <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1">
+              <div key={key} className="bg-gray-50 dark:bg-slate-700 rounded-lg p-4">
+                <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide mb-1">
                   {formatLabel(key)}
                 </p>
-                <p className="text-xl font-bold text-gray-900">
+                <p className="text-xl font-bold text-gray-900 dark:text-white">
                   {typeof value === 'string' ? formatLabel(value) : value}
                 </p>
               </div>
@@ -96,19 +96,19 @@ export default function ResultsPage() {
         </section>
 
         {/* Meal Plan */}
-        <section className="bg-white rounded-lg shadow-md p-8 border border-gray-200 mb-8">
-          <h2 className="text-2xl font-bold text-purple-600 mb-6">Your Meal Plan</h2>
+        <section className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-8 border border-gray-200 dark:border-slate-700 mb-8">
+          <h2 className="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-6">Your Meal Plan</h2>
           <div
-            className="prose prose-sm max-w-none text-gray-700 whitespace-pre-wrap"
+            className="prose prose-sm max-w-none text-gray-700 dark:text-gray-300 whitespace-pre-wrap"
             dangerouslySetInnerHTML={{ __html: cleanAIContent(planData.meal_plan) }}
           />
         </section>
 
         {/* Workout Plan */}
-        <section className="bg-white rounded-lg shadow-md p-8 border border-gray-200 mb-8">
-          <h2 className="text-2xl font-bold text-purple-600 mb-6">Your Workout Plan</h2>
+        <section className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-8 border border-gray-200 dark:border-slate-700 mb-8">
+          <h2 className="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-6">Your Workout Plan</h2>
           <div
-            className="prose prose-sm max-w-none text-gray-700 whitespace-pre-wrap"
+            className="prose prose-sm max-w-none text-gray-700 dark:text-gray-300 whitespace-pre-wrap"
             dangerouslySetInnerHTML={{ __html: cleanAIContent(planData.workout_plan) }}
           />
         </section>

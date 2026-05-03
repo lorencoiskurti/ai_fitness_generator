@@ -23,13 +23,13 @@ export default function ToastContainer() {
 
     switch (type) {
       case 'success':
-        return `${baseStyles} bg-emerald-50 border-emerald-200 text-emerald-900`;
+        return `${baseStyles} bg-emerald-50 dark:bg-emerald-900/30 border-emerald-200 dark:border-emerald-700 text-emerald-900 dark:text-emerald-200`;
       case 'error':
-        return `${baseStyles} bg-red-50 border-red-200 text-red-900`;
+        return `${baseStyles} bg-red-50 dark:bg-red-900/30 border-red-200 dark:border-red-700 text-red-900 dark:text-red-200`;
       case 'warning':
-        return `${baseStyles} bg-amber-50 border-amber-200 text-amber-900`;
+        return `${baseStyles} bg-amber-50 dark:bg-amber-900/30 border-amber-200 dark:border-amber-700 text-amber-900 dark:text-amber-200`;
       case 'info':
-        return `${baseStyles} bg-blue-50 border-blue-200 text-blue-900`;
+        return `${baseStyles} bg-blue-50 dark:bg-blue-900/30 border-blue-200 dark:border-blue-700 text-blue-900 dark:text-blue-200`;
       default:
         return baseStyles;
     }

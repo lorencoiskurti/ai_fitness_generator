@@ -738,6 +738,11 @@ def serve_react(path):
     return f"404: {path} not found", 404
 
 
+@app.route("/assets/<path:path>")
+def serve_assets(path):
+    return send_from_directory(os.path.join(REACT_BUILD_PATH, "assets"), path)
+
+
 @app.route("/api/register", methods=["POST"])
 def api_register():
     if current_user.is_authenticated:

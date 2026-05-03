@@ -30,16 +30,16 @@ export default function Modal({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-xl shadow-2xl max-w-sm w-full mx-4">
+      <div className="bg-white dark:bg-slate-800 rounded-xl shadow-2xl max-w-sm w-full mx-4">
         <div className="p-6">
-          <h2 className="text-xl font-bold text-gray-900 mb-2">{title}</h2>
-          <p className="text-gray-600 mb-6">{message}</p>
+          <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{title}</h2>
+          <p className="text-gray-600 dark:text-gray-400 mb-6">{message}</p>
 
           <div className="flex gap-3 justify-end">
             <button
               onClick={onCancel}
               disabled={isLoading}
-              className="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 font-medium transition-colors disabled:opacity-60"
+              className="px-4 py-2 rounded-lg border border-gray-300 dark:border-slate-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 font-medium transition-colors disabled:opacity-60"
             >
               {cancelText}
             </button>

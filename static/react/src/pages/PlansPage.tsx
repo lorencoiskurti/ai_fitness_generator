@@ -142,11 +142,11 @@ export default function PlansPage() {
   return (
     <Layout>
       <main className="container mx-auto px-6 py-8">
-        <h1 className="text-4xl font-bold text-center text-gray-900 mb-2">My Saved Fitness Plans 📋</h1>
-        <p className="text-center text-gray-600 mb-8">Manage all your personalized fitness plans</p>
+        <h1 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-2">My Saved Fitness Plans 📋</h1>
+        <p className="text-center text-gray-600 dark:text-gray-400 mb-8">Manage all your personalized fitness plans</p>
 
         {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-6 max-w-2xl mx-auto">
+          <div className="bg-red-100 dark:bg-red-900/30 border border-red-400 dark:border-red-700 text-red-700 dark:text-red-300 px-4 py-3 rounded-lg mb-6 max-w-2xl mx-auto">
             {error}
           </div>
         )}
@@ -168,8 +168,8 @@ export default function PlansPage() {
 
         <div className="max-w-4xl mx-auto">
           {plans.length === 0 ? (
-            <div className="bg-white rounded-lg shadow-md p-8 text-center border border-gray-200">
-              <p className="text-gray-600 text-lg mb-4">No plans have been saved yet.</p>
+            <div className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-8 text-center border border-gray-200 dark:border-slate-700">
+              <p className="text-gray-600 dark:text-gray-400 text-lg mb-4">No plans have been saved yet.</p>
               <Button
                 variant="primary"
                 onClick={() => navigate('/generate')}
@@ -182,40 +182,40 @@ export default function PlansPage() {
               {plans.map((plan) => (
                 <div
                   key={plan.id}
-                  className="bg-white rounded-lg shadow-md border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow duration-200"
+                  className="bg-white dark:bg-slate-800 rounded-lg shadow-md border border-gray-200 dark:border-slate-700 overflow-hidden hover:shadow-lg transition-shadow duration-200"
                 >
                   {/* Plan Header */}
                   <div className="p-6">
-                    <h3 className="text-xl font-bold text-purple-600 mb-3">
+                    <h3 className="text-xl font-bold text-purple-600 dark:text-purple-400 mb-3">
                       {plan.age}yo {formatLabel(plan.gender)} • Goal: {formatLabel(plan.fitness_goal)}
                     </h3>
-                    <p className="text-sm text-gray-600 mb-4">
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
                       Generated on: <span className="font-semibold">{formatDate(plan.date_generated)}</span>
                     </p>
 
                     {/* Metrics Grid */}
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 bg-gray-50 rounded-lg p-4">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 bg-gray-50 dark:bg-slate-700 rounded-lg p-4">
                       <div>
-                        <p className="text-xs font-semibold text-gray-600 uppercase mb-1">BMI</p>
-                        <p className="text-lg font-bold text-gray-900">{plan.bmi.toFixed(2)}</p>
-                        <p className="text-xs text-gray-600">{plan.bmi_category}</p>
+                        <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase mb-1">BMI</p>
+                        <p className="text-lg font-bold text-gray-900 dark:text-white">{plan.bmi.toFixed(2)}</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400">{plan.bmi_category}</p>
                       </div>
                       <div>
-                        <p className="text-xs font-semibold text-gray-600 uppercase mb-1">TDEE</p>
-                        <p className="text-lg font-bold text-gray-900">{plan.tdee.toFixed(0)}</p>
-                        <p className="text-xs text-gray-600">cal/day</p>
+                        <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase mb-1">TDEE</p>
+                        <p className="text-lg font-bold text-gray-900 dark:text-white">{plan.tdee.toFixed(0)}</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400">cal/day</p>
                       </div>
                       <div>
-                        <p className="text-xs font-semibold text-gray-600 uppercase mb-1">Height</p>
-                        <p className="text-lg font-bold text-gray-900">{plan.height_cm}cm</p>
+                        <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase mb-1">Height</p>
+                        <p className="text-lg font-bold text-gray-900 dark:text-white">{plan.height_cm}cm</p>
                       </div>
                       <div>
-                        <p className="text-xs font-semibold text-gray-600 uppercase mb-1">Weight</p>
-                        <p className="text-lg font-bold text-gray-900">{plan.weight_kg}kg</p>
+                        <p className="text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase mb-1">Weight</p>
+                        <p className="text-lg font-bold text-gray-900 dark:text-white">{plan.weight_kg}kg</p>
                       </div>
                     </div>
 
-                    <p className="text-sm text-gray-600 mb-4">
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
                       <span className="font-semibold">Diet:</span> {formatLabel(plan.dietary_preference)} |
                       <span className="font-semibold ml-3">Activity:</span> {formatLabel(plan.activity_level)}
                     </p>
@@ -249,19 +249,19 @@ export default function PlansPage() {
 
                   {/* Expandable Details */}
                   {expandedPlanId === plan.id && (
-                    <div className="border-t border-gray-200 bg-gray-50 p-6">
+                    <div className="border-t border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-700 p-6">
                       <div className="mb-8">
-                        <h4 className="text-lg font-bold text-purple-600 mb-4">Meal Plan</h4>
+                        <h4 className="text-lg font-bold text-purple-600 dark:text-purple-400 mb-4">Meal Plan</h4>
                         <div
-                          className="prose prose-sm max-w-none text-gray-700 whitespace-pre-wrap"
+                          className="prose prose-sm max-w-none text-gray-700 dark:text-gray-100 whitespace-pre-wrap"
                           dangerouslySetInnerHTML={{ __html: cleanAIContent(plan.meal_plan_html) }}
                         />
                       </div>
 
                       <div>
-                        <h4 className="text-lg font-bold text-purple-600 mb-4">Workout Plan</h4>
+                        <h4 className="text-lg font-bold text-purple-600 dark:text-purple-400 mb-4">Workout Plan</h4>
                         <div
-                          className="prose prose-sm max-w-none text-gray-700 whitespace-pre-wrap"
+                          className="prose prose-sm max-w-none text-gray-700 dark:text-gray-100 whitespace-pre-wrap"
                           dangerouslySetInnerHTML={{ __html: cleanAIContent(plan.workout_plan_html) }}
                         />
                       </div>

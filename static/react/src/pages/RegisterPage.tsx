@@ -81,12 +81,12 @@ export default function RegisterPage() {
     <Layout>
       <main className="container mx-auto px-6 py-12">
         <div className="max-w-md mx-auto">
-          <div className="bg-white rounded-lg shadow-md p-8 border border-gray-200">
-            <h1 className="text-3xl font-bold text-center text-gray-900 mb-2">Create Account</h1>
-            <p className="text-center text-gray-600 mb-8">Join AI Fitness Generator today</p>
+          <div className="bg-white dark:bg-slate-800 rounded-lg shadow-md p-8 border border-gray-200 dark:border-slate-700">
+            <h1 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-2">Create Account</h1>
+            <p className="text-center text-gray-600 dark:text-gray-400 mb-8">Join AI Fitness Generator today</p>
 
             {error && (
-              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-6 text-sm">
+              <div className="bg-red-100 dark:bg-red-900/30 border border-red-400 dark:border-red-700 text-red-700 dark:text-red-300 px-4 py-3 rounded-lg mb-6 text-sm">
                 {error}
               </div>
             )}
@@ -133,12 +133,12 @@ export default function RegisterPage() {
               </Button>
             </form>
 
-            <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
-              <p className="text-center text-gray-700">
+            <div className="mt-6 p-4 bg-gray-50 dark:bg-slate-700 rounded-lg border border-gray-200 dark:border-slate-600">
+              <p className="text-center text-gray-700 dark:text-gray-300">
                 Already have an account?{' '}
                 <button
                   onClick={() => navigate('/login')}
-                  className="text-purple-600 font-semibold hover:text-purple-700 transition-colors"
+                  className="text-purple-600 dark:text-purple-400 font-semibold hover:text-purple-700 dark:hover:text-purple-300 transition-colors"
                 >
                   Login here
                 </button>

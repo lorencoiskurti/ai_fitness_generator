@@ -86,8 +86,8 @@ export default function PaymentPage() {
     <Layout>
       <main className="container mx-auto max-w-4xl px-4 py-12">
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-gray-900 mb-3">Upgrade to Pro</h1>
-          <p className="text-xl text-gray-600">Unlock unlimited AI-generated fitness plans</p>
+          <h1 className="text-5xl font-bold text-gray-900 dark:text-white mb-3">Upgrade to Pro</h1>
+          <p className="text-xl text-gray-600 dark:text-gray-400">Unlock unlimited AI-generated fitness plans</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
@@ -98,16 +98,16 @@ export default function PaymentPage() {
               onClick={() => setSelectedPlan('monthly')}
               className={`w-full text-left border-2 rounded-xl p-6 transition-all ${
                 selectedPlan === 'monthly'
-                  ? 'border-purple-500 bg-purple-50'
-                  : 'border-gray-200 hover:border-gray-300'
+                  ? 'border-purple-500 bg-purple-50 dark:bg-purple-900/20'
+                  : 'border-gray-200 dark:border-slate-700 hover:border-gray-300 dark:hover:border-slate-600'
               }`}
             >
               <div className="flex justify-between items-start">
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Monthly</h3>
-                  <p className="text-4xl font-bold text-gray-900">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Monthly</h3>
+                  <p className="text-4xl font-bold text-gray-900 dark:text-white">
                     ${prices.monthly.price}
-                    <span className="text-lg text-gray-600">/mo</span>
+                    <span className="text-lg text-gray-600 dark:text-gray-400">/mo</span>
                   </p>
                 </div>
                 {selectedPlan === 'monthly' && (
@@ -125,21 +125,21 @@ export default function PaymentPage() {
               onClick={() => setSelectedPlan('yearly')}
               className={`w-full text-left border-2 rounded-xl p-6 transition-all ${
                 selectedPlan === 'yearly'
-                  ? 'border-purple-500 bg-purple-50'
-                  : 'border-gray-200 hover:border-gray-300'
+                  ? 'border-purple-500 bg-purple-50 dark:bg-purple-900/20'
+                  : 'border-gray-200 dark:border-slate-700 hover:border-gray-300 dark:hover:border-slate-600'
               }`}
             >
               <div className="flex justify-between items-start">
                 <div>
-                  <div className="inline-block bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full mb-2">
+                  <div className="inline-block bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-bold px-3 py-1 rounded-full mb-2">
                     Save 33%
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Yearly</h3>
-                  <p className="text-4xl font-bold text-gray-900">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">Yearly</h3>
+                  <p className="text-4xl font-bold text-gray-900 dark:text-white">
                     ${prices.yearly.price}
-                    <span className="text-lg text-gray-600">/yr</span>
+                    <span className="text-lg text-gray-600 dark:text-gray-400">/yr</span>
                   </p>
-                  <p className="text-sm text-gray-400 line-through mt-1">
+                  <p className="text-sm text-gray-400 dark:text-gray-500 line-through mt-1">
                     ${prices.yearly.originalPrice}
                   </p>
                 </div>
@@ -154,46 +154,46 @@ export default function PaymentPage() {
             </button>
 
             {/* Feature List */}
-            <div className="space-y-3 mt-6 pt-4 border-t border-gray-200">
+            <div className="space-y-3 mt-6 pt-4 border-t border-gray-200 dark:border-slate-700">
               <div className="flex items-center gap-2">
                 <span className="text-lg">✓</span>
-                <span className="text-gray-700">Unlimited plan generations</span>
+                <span className="text-gray-700 dark:text-gray-300">Unlimited plan generations</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-lg">✓</span>
-                <span className="text-gray-700">AI-powered meal plans</span>
+                <span className="text-gray-700 dark:text-gray-300">AI-powered meal plans</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-lg">✓</span>
-                <span className="text-gray-700">Personalized workout schedules</span>
+                <span className="text-gray-700 dark:text-gray-300">Personalized workout schedules</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-lg">✓</span>
-                <span className="text-gray-700">Cancel anytime</span>
+                <span className="text-gray-700 dark:text-gray-300">Cancel anytime</span>
               </div>
             </div>
           </div>
 
           {/* RIGHT: Payment Form */}
-          <div className="lg:col-span-3 bg-white border border-gray-200 rounded-2xl p-8 shadow-sm relative">
+          <div className="lg:col-span-3 bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-2xl p-8 shadow-sm relative">
             {successState && (
-              <div className="absolute inset-0 flex items-center justify-center bg-white/95 rounded-2xl z-10">
+              <div className="absolute inset-0 flex items-center justify-center bg-white/95 dark:bg-slate-800/95 rounded-2xl z-10">
                 <div className="text-center">
                   <div className="text-6xl mb-4">✅</div>
-                  <h3 className="text-2xl font-bold text-green-600 mb-2">Payment Successful!</h3>
-                  <p className="text-gray-600">Redirecting to your plan generator...</p>
+                  <h3 className="text-2xl font-bold text-green-600 dark:text-green-400 mb-2">Payment Successful!</h3>
+                  <p className="text-gray-600 dark:text-gray-400">Redirecting to your plan generator...</p>
                 </div>
               </div>
             )}
 
             {/* Payment Method Tabs */}
-            <div className="flex gap-2 mb-8 border border-gray-200 rounded-lg p-1 bg-gray-50">
+            <div className="flex gap-2 mb-8 border border-gray-200 dark:border-slate-700 rounded-lg p-1 bg-gray-50 dark:bg-slate-700">
               <button
                 onClick={() => setActiveTab('card')}
                 className={`flex-1 px-4 py-2 rounded-md font-medium transition-colors ${
                   activeTab === 'card'
-                    ? 'bg-white text-gray-900 shadow-sm'
-                    : 'text-gray-600 hover:text-gray-900'
+                    ? 'bg-white dark:bg-slate-800 text-gray-900 dark:text-white shadow-sm'
+                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
                 }`}
               >
                 Card
@@ -202,8 +202,8 @@ export default function PaymentPage() {
                 onClick={() => setActiveTab('paypal')}
                 className={`flex-1 px-4 py-2 rounded-md font-medium transition-colors ${
                   activeTab === 'paypal'
-                    ? 'bg-white text-gray-900 shadow-sm'
-                    : 'text-gray-600 hover:text-gray-900'
+                    ? 'bg-white dark:bg-slate-800 text-gray-900 dark:text-white shadow-sm'
+                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
                 }`}
               >
                 PayPal
@@ -214,7 +214,7 @@ export default function PaymentPage() {
             {activeTab === 'card' && (
               <form className="space-y-5">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-900 mb-2">Card Number</label>
+                  <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">Card Number</label>
                   <div className="relative">
                     <input
                       type="text"
@@ -222,7 +222,7 @@ export default function PaymentPage() {
                       value={cardNumber}
                       onChange={(e) => formatCardNumber(e.target.value)}
                       maxLength={19}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-lg"
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-white text-lg"
                     />
                     <div className="absolute right-4 top-1/2 -translate-y-1/2 flex gap-1">
                       <svg className="w-8 h-5 text-blue-600" viewBox="0 0 48 32" fill="currentColor">
@@ -233,32 +233,32 @@ export default function PaymentPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-gray-900 mb-2">Cardholder Name</label>
+                  <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">Cardholder Name</label>
                   <input
                     type="text"
                     placeholder="John Smith"
                     value={cardName}
                     onChange={(e) => setCardName(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    className="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-white"
                   />
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-semibold text-gray-900 mb-2">Expiry</label>
+                    <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-2">Expiry</label>
                     <input
                       type="text"
                       placeholder="MM/YY"
                       value={expiry}
                       onChange={(e) => formatExpiry(e.target.value)}
                       maxLength={5}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-white"
                     />
                   </div>
                   <div>
-                    <label className="flex items-center gap-1 text-sm font-semibold text-gray-900 mb-2">
+                    <label className="flex items-center gap-1 text-sm font-semibold text-gray-900 dark:text-white mb-2">
                       CVV
-                      <span className="text-gray-400 text-xs cursor-help" title="3-4 digit security code">?</span>
+                      <span className="text-gray-400 dark:text-gray-500 text-xs cursor-help" title="3-4 digit security code">?</span>
                     </label>
                     <input
                       type="password"
@@ -266,7 +266,7 @@ export default function PaymentPage() {
                       value={cvv}
                       onChange={(e) => setCvv(e.target.value.replace(/\D/g, '').slice(0, 4))}
                       maxLength={4}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-white"
                     />
                   </div>
                 </div>
@@ -276,7 +276,7 @@ export default function PaymentPage() {
             {/* PayPal Tab */}
             {activeTab === 'paypal' && (
               <div className="flex flex-col items-center justify-center py-12 gap-4">
-                <div className="text-gray-500 text-sm">Click below to connect your PayPal account</div>
+                <div className="text-gray-500 dark:text-gray-400 text-sm">Click below to connect your PayPal account</div>
                 <button
                   onClick={() => setShowPayPalLogin(true)}
                   disabled={isLoading}
@@ -312,22 +312,22 @@ export default function PaymentPage() {
                   )}
                 </button>
 
-                <p className="text-center text-xs text-gray-400 mt-4">Cancel anytime · No hidden fees</p>
+                <p className="text-center text-xs text-gray-400 dark:text-gray-500 mt-4">Cancel anytime · No hidden fees</p>
               </>
             )}
 
             {/* Trust Indicators */}
-            <div className="mt-8 pt-6 border-t border-gray-100">
-              <div className="flex items-center justify-center gap-2 text-gray-400 text-xs mb-4">
+            <div className="mt-8 pt-6 border-t border-gray-100 dark:border-slate-700">
+              <div className="flex items-center justify-center gap-2 text-gray-400 dark:text-gray-500 text-xs mb-4">
                 🔒 256-bit SSL encrypted · PCI DSS compliant
               </div>
 
               {/* Card Logos */}
               <div className="flex items-center justify-center gap-6">
-                <div className="text-gray-400 text-xs font-semibold">Visa</div>
-                <div className="text-gray-400 text-xs font-semibold">Mastercard</div>
-                <div className="text-gray-400 text-xs font-semibold">PayPal</div>
-                <div className="text-gray-400 text-xs font-semibold">Amex</div>
+                <div className="text-gray-400 dark:text-gray-500 text-xs font-semibold">Visa</div>
+                <div className="text-gray-400 dark:text-gray-500 text-xs font-semibold">Mastercard</div>
+                <div className="text-gray-400 dark:text-gray-500 text-xs font-semibold">PayPal</div>
+                <div className="text-gray-400 dark:text-gray-500 text-xs font-semibold">Amex</div>
               </div>
             </div>
           </div>
@@ -336,7 +336,7 @@ export default function PaymentPage() {
         {/* PayPal Login Modal */}
         {showPayPalLogin && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-            <div className="bg-white rounded-2xl shadow-2xl max-w-sm w-full mx-4">
+            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl max-w-sm w-full mx-4">
               <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4 rounded-t-2xl">
                 <h2 className="text-xl font-bold text-white">Log in to your PayPal account</h2>
               </div>
@@ -349,23 +349,23 @@ export default function PaymentPage() {
                 className="p-6 space-y-4"
               >
                 <div>
-                  <label className="block text-sm font-semibold text-gray-900 mb-1">Email or phone</label>
+                  <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-1">Email or phone</label>
                   <input
                     type="email"
                     value={paypalEmail}
                     onChange={(e) => setPaypalEmail(e.target.value)}
                     placeholder="name@example.com"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-white"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-gray-900 mb-1">Password</label>
+                  <label className="block text-sm font-semibold text-gray-900 dark:text-white mb-1">Password</label>
                   <input
                     type="password"
                     value={paypalPassword}
                     onChange={(e) => setPaypalPassword(e.target.value)}
                     placeholder="••••••••"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-slate-700 text-gray-900 dark:text-white"
                   />
                 </div>
 
@@ -373,7 +373,7 @@ export default function PaymentPage() {
                   <button
                     type="button"
                     onClick={() => setShowPayPalLogin(false)}
-                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 font-medium"
+                    className="flex-1 px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-slate-700 font-medium"
                   >
                     Cancel
                   </button>

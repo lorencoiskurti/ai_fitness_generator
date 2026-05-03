@@ -10,7 +10,8 @@ body,
 }
 
 body {
-  @apply bg-gray-50;
+  @apply bg-gray-50 dark:bg-slate-950 text-gray-900 dark:text-gray-100;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Smooth scrollbar */
@@ -19,20 +20,20 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-gray-50;
+  @apply bg-gray-50 dark:bg-slate-950;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-gray-300 rounded-full;
+  @apply bg-gray-300 dark:bg-slate-700 rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-gray-400;
+  @apply bg-gray-400 dark:bg-slate-600;
 }
 
 /* Glassmorphism effect */
 .glass-card {
-  @apply bg-white/85 backdrop-blur-sm border border-white/20 shadow-glass;
+  @apply bg-white/85 dark:bg-slate-900/85 backdrop-blur-sm border border-white/20 dark:border-slate-700/30 shadow-glass;
 }
 
 /* Page transitions */
@@ -51,7 +52,7 @@ body {
 
 /* Form focus styles */
 .input-focus {
-  @apply border-primary-500 ring-2 ring-primary-200;
+  @apply border-primary-500 ring-2 ring-primary-200 dark:ring-primary-900/50;
 }
 
 /* Button hover lift */
@@ -116,10 +117,10 @@ body {
 
 /* Prose styling for AI-generated content */
 .prose h3 {
-  @apply text-purple-600 font-bold mt-4 mb-2;
+  @apply text-purple-600 dark:text-purple-200 font-bold mt-4 mb-2;
 }
 .prose h4 {
-  @apply text-purple-600 font-bold mt-3 mb-2;
+  @apply text-purple-600 dark:text-purple-200 font-bold mt-3 mb-2;
 }
 .prose ul {
   @apply list-none space-y-2;
@@ -129,10 +130,13 @@ body {
 }
 .prose li::before {
   content: '✓';
-  @apply text-emerald-500 font-bold flex-shrink-0;
+  @apply text-emerald-500 dark:text-emerald-400 font-bold flex-shrink-0;
 }
 .prose li:before {
-  @apply text-emerald-500;
+  @apply text-emerald-500 dark:text-emerald-400;
+}
+.prose strong {
+  @apply text-purple-600 dark:text-purple-300;
 }
 
 /* Transition utilities */
@@ -141,4 +145,36 @@ body {
 }
 .transition-smooth {
   @apply transition-all duration-300;
+}
+
+/* Hide native number spinners - we use custom ones */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+/* Autofill styling */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px white inset !important;
+  box-shadow: 0 0 0 1000px white inset !important;
+}
+
+input:-webkit-autofill {
+  -webkit-text-fill-color: #111827 !important;
+}
+
+/* Dark mode autofill */
+.dark input:-webkit-autofill,
+.dark input:-webkit-autofill:hover,
+.dark input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #374151 inset !important;
+  box-shadow: 0 0 0 1000px #374151 inset !important;
+}
+
+.dark input:-webkit-autofill {
+  -webkit-text-fill-color: #f3f4f6 !important;
 }

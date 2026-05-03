@@ -23,13 +23,13 @@ export default function MobileNav({
 }: MobileNavProps) {
   return (
     <div
-      className={`fixed inset-0 z-40 bg-black/50 transition-opacity duration-300 ${
+      className={`fixed inset-0 z-40 bg-black/50 dark:bg-black/70 transition-opacity duration-300 ${
         isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
       }`}
       onClick={onLinkClick}
     >
       <nav
-        className={`fixed right-0 top-16 w-64 bg-white shadow-lg transform transition-transform duration-300 ${
+        className={`fixed right-0 top-16 w-64 bg-white dark:bg-slate-900 shadow-lg dark:shadow-slate-700 transform transition-transform duration-300 ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
         onClick={(e) => e.stopPropagation()}
@@ -37,26 +37,26 @@ export default function MobileNav({
         <div className="p-4 space-y-2">
           {isAuthenticated ? (
             <>
-              <div className="px-4 py-2 text-sm font-semibold text-gray-900 border-b border-gray-200 mb-4">
+              <div className="px-4 py-2 text-sm font-semibold text-gray-900 dark:text-white border-b border-gray-200 dark:border-slate-700 mb-4">
                 {username}
               </div>
               <Link
                 to="/"
-                className="block px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
+                className="block px-4 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors"
                 onClick={onLinkClick}
               >
                 Home
               </Link>
               <Link
                 to="/plans"
-                className="block px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
+                className="block px-4 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors"
                 onClick={onLinkClick}
               >
                 My Plans
               </Link>
               <Link
                 to="/generate"
-                className="block px-4 py-2 rounded-lg bg-purple-600 text-white hover:bg-purple-700 transition-colors font-medium"
+                className="block px-4 py-2 rounded-lg bg-purple-600 dark:bg-purple-700 text-white hover:bg-purple-700 dark:hover:bg-purple-600 transition-colors font-medium"
                 onClick={onLinkClick}
               >
                 Generate Plan
@@ -64,11 +64,11 @@ export default function MobileNav({
               {subscriptionActive ? (
                 <Link
                   to="/subscription"
-                  className="block px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-emerald-50 transition-colors"
+                  className="block px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors"
                   onClick={onLinkClick}
                 >
                   <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                  <span className="text-sm font-semibold text-emerald-700">Pro Active</span>
+                  <span className="text-sm font-semibold text-emerald-700 dark:text-emerald-400">Pro Active</span>
                 </Link>
               ) : (
                 <button
@@ -76,7 +76,7 @@ export default function MobileNav({
                     onGoToPro(currentPath);
                     onLinkClick();
                   }}
-                  className="w-full block px-4 py-2 rounded-lg text-purple-600 border border-purple-200 hover:bg-purple-50 transition-colors font-medium text-center"
+                  className="w-full block px-4 py-2 rounded-lg text-purple-600 dark:text-purple-400 border border-purple-200 dark:border-purple-700 hover:bg-purple-50 dark:hover:bg-purple-900/30 transition-colors font-medium text-center"
                 >
                   Go Pro
                 </button>
@@ -86,7 +86,7 @@ export default function MobileNav({
                   onLogout();
                   onLinkClick();
                 }}
-                className="w-full text-left px-4 py-2 rounded-lg text-gray-700 hover:bg-red-50 hover:text-red-700 transition-colors"
+                className="w-full text-left px-4 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-700 dark:hover:text-red-400 transition-colors"
               >
                 Logout
               </button>
@@ -95,21 +95,21 @@ export default function MobileNav({
             <>
               <Link
                 to="/"
-                className="block px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
+                className="block px-4 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors"
                 onClick={onLinkClick}
               >
                 Home
               </Link>
               <Link
                 to="/login"
-                className="block px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
+                className="block px-4 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors"
                 onClick={onLinkClick}
               >
                 Login
               </Link>
               <Link
                 to="/register"
-                className="block px-4 py-2 rounded-lg bg-purple-600 text-white hover:bg-purple-700 transition-colors font-medium"
+                className="block px-4 py-2 rounded-lg bg-purple-600 dark:bg-purple-700 text-white hover:bg-purple-700 dark:hover:bg-purple-600 transition-colors font-medium"
                 onClick={onLinkClick}
               >
                 Sign Up

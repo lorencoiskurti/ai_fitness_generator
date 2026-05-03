@@ -1298,6 +1298,75 @@ cd ../..
 
 ---
 
+## 🌙 Dark Mode & Theme Implementation
+
+### Theme Toggle Component
+**Location**: `static/react/src/components/ThemeToggle.tsx` + `ThemeToggle.css`
+
+**Features**:
+- Animated sun/moon icons with smooth transitions
+- Uses SVG with clip-path for moon shape (responsive scaling with `clipPathUnits="objectBoundingBox"`)
+- Stores theme preference in localStorage via `useTheme()` hook
+- Applied to html element via `dark` class
+
+**Sun Icon**:
+- Center circle with 9 rays at 40-degree angles
+- Dimensions controlled by font-size in `.switch` (default 16px)
+- Rays use `translateY` positioning relative to center
+
+**Moon Icon**:
+- SVG clip-path with scaled transform for responsive rendering
+- Uses pseudo-elements for shading effects
+- Adapts brightness in dark mode
+
+### Dark Mode Styling Applied
+
+**Components Updated**:
+- **Header.tsx**: Dark background (`dark:bg-slate-900/85`), text colors, buttons
+- **Button.tsx**: Secondary variant dark mode colors, ghost variant dark support
+- **Modal.tsx**: Dark backgrounds (`dark:bg-slate-800`), text colors
+- **FormField.tsx**: Dark input backgrounds, border colors, custom number spinners
+- **Toast.tsx**: Dark mode for all toast types (success, error, warning, info) with appropriate background opacity
+
+**Pages Updated**:
+- **LoginPage.tsx**: Dark card backgrounds, error message colors
+- **RegisterPage.tsx**: Dark form styling
+- **GeneratePlanPage.tsx**: Dark form containers, dropdown styling
+- **ResultsPage.tsx**: Dark summary cards, metrics display
+- **PlansPage.tsx**: Dark plan cards, content sections, prose styling
+- **PaymentPage.tsx**: Dark pricing cards, form inputs, modals
+- **SubscriptionDashboard.tsx**: Dark subscription card, feature lists
+
+**Global Styles** (index.css):
+- Dark scrollbar styling (`dark:bg-slate-700`)
+- Page transitions maintained
+- Dark mode color transitions (0.3s ease)
+
+### Prose Content Styling
+**Location**: `index.css` + PlansPage.tsx
+
+**Features**:
+- Numbered list items (1., 2., 3., etc.) styled in `purple-600` (light mode) and `purple-300` (dark mode)
+- Uses `<strong>` tag targeting for day numbers
+- Headings (h3, h4) in purple tones
+- Checkmarks in emerald green for bullet lists
+- PlansPage text color: `dark:text-gray-100` for better readability
+
+### Autofill Styling
+**Location**: index.css
+
+**Solution**: 
+- Uses box-shadow technique to override browser autofill background colors
+- Light mode: white background with dark text (`#111827`)
+- Dark mode: dark gray background (`#374151`) with light text (`#f3f4f6`)
+- Applied via `-webkit-box-shadow: 0 0 0 1000px [color] inset !important`
+
+**Tested On**:
+- Login/Register forms (FormField component)
+- PayPal payment modal
+
+---
+
 ## 📝 Environment Configuration
 
 **Required .env Variables**:
@@ -1319,9 +1388,10 @@ DATABASE_URL=sqlite:///...    # Custom DB path
 
 FitnessAI combines:
 - **Backend**: Flask REST API with SQLAlchemy ORM, Google Gemini AI integration
-- **Frontend**: React with TypeScript, modern UI with Tailwind CSS
-- **Features**: User auth, fitness plan generation, subscription system
+- **Frontend**: React with TypeScript, modern UI with Tailwind CSS + Dark Mode support
+- **Features**: User auth, fitness plan generation, subscription system, complete dark mode
 - **AI**: Google Gemini 2.5 Flash for meal and workout planning
 - **Database**: SQLite with subscription support
+- **Theme**: Animated theme toggle with persistent preference, comprehensive dark mode styling
 
 All components are fully integrated and production-ready for deployment.

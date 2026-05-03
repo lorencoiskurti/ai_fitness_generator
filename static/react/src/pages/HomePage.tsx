@@ -29,18 +29,18 @@ export default function HomePage() {
         </section>
 
         {/* Intro Section */}
-        <section className="bg-white rounded-lg shadow-md p-8 mb-8 border border-gray-200 card-hover" style={{ animationDelay: '0.1s' }}>
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Welcome to AI Fitness Generator</h2>
-          <p className="text-gray-600 text-lg">
+        <section className="bg-white dark:bg-slate-900 rounded-lg shadow-md dark:shadow-slate-700 p-8 mb-8 border border-gray-200 dark:border-slate-700 card-hover transition-colors" style={{ animationDelay: '0.1s' }}>
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Welcome to AI Fitness Generator</h2>
+          <p className="text-gray-600 dark:text-gray-400 text-lg">
             Unlock your full potential with custom fitness and meal plans tailored specifically for you. Whether you're aiming to{' '}
-            <strong className="text-gray-900">lose weight</strong>, <strong className="text-gray-900">gain muscle</strong>, or{' '}
-            <strong className="text-gray-900">maintain a healthy lifestyle</strong>, our intelligent AI will create a plan that fits your unique needs and goals.
+            <strong className="text-gray-900 dark:text-white">lose weight</strong>, <strong className="text-gray-900 dark:text-white">gain muscle</strong>, or{' '}
+            <strong className="text-gray-900 dark:text-white">maintain a healthy lifestyle</strong>, our intelligent AI will create a plan that fits your unique needs and goals.
           </p>
         </section>
 
         {/* Features Section */}
-        <section className="bg-white rounded-lg shadow-md p-8 mb-8 border border-gray-200 card-hover" style={{ animationDelay: '0.2s' }}>
-          <h3 className="text-2xl font-bold text-gray-900 mb-6">Why Choose Us?</h3>
+        <section className="bg-white dark:bg-slate-900 rounded-lg shadow-md dark:shadow-slate-700 p-8 mb-8 border border-gray-200 dark:border-slate-700 card-hover transition-colors" style={{ animationDelay: '0.2s' }}>
+          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Why Choose Us?</h3>
           <ul className="space-y-3 stagger">
             {[
               'Personalized meal plans based on your dietary preferences and calorie needs',
@@ -51,20 +51,20 @@ export default function HomePage() {
             ].map((feature, index) => (
               <li
                 key={index}
-                className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg hover:shadow-md hover:bg-gray-100 transition-all duration-200"
+                className="flex items-start gap-3 p-3 bg-gray-50 dark:bg-slate-800 rounded-lg hover:shadow-md dark:hover:shadow-slate-600 hover:bg-gray-100 dark:hover:bg-slate-700 transition-all duration-200"
               >
                 <div className="flex-shrink-0 w-6 h-6 bg-emerald-500 text-white rounded-full flex items-center justify-center text-sm font-bold">
                   ✓
                 </div>
-                <span className="text-gray-700">{feature}</span>
+                <span className="text-gray-700 dark:text-gray-300">{feature}</span>
               </li>
             ))}
           </ul>
         </section>
 
         {/* CTA Section */}
-        <section className="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg shadow-md p-8 border border-purple-200 text-center mb-8 card-hover" style={{ animationDelay: '0.3s' }}>
-          <p className="text-xl text-gray-700 mb-6">Ready to start your journey towards a healthier, stronger you?</p>
+        <section className="bg-gradient-to-r from-purple-50 dark:from-slate-800 to-purple-100 dark:to-slate-700 rounded-lg shadow-md dark:shadow-slate-700 p-8 border border-purple-200 dark:border-slate-600 text-center mb-8 card-hover transition-colors" style={{ animationDelay: '0.3s' }}>
+          <p className="text-xl text-gray-800 dark:text-gray-200 mb-6">Ready to start your journey towards a healthier, stronger you?</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             {!user.authenticated ? (
               <>
