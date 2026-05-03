@@ -64,22 +64,30 @@ Visit `http://localhost:5173` (frontend) or `http://localhost:5000` (backend API
 FitnessAI/
 ├── app.py                              # Flask REST API
 ├── requirements.txt                    # Python dependencies
-├── .env                               # Environment variables
-├── site.db                            # SQLite database
+├── .env                               # Environment variables (create this)
+├── PROJECT_PRESENTATION_GUIDE.md       # Detailed feature documentation
+├── .gitignore
 │
 ├── static/
-│   └── react/                         # React SPA
+│   └── react/                         # React SPA (Vite + TypeScript)
 │       ├── src/
-│       │   ├── components/           # UI components (Header, Footer, ThemeToggle, etc)
-│       │   ├── pages/               # Page components (HomePage, GeneratePlanPage, etc)
-│       │   ├── services/            # API & auth services
+│       │   ├── components/           # UI components (Header, Footer, ThemeToggle, Button, Modal, etc)
+│       │   ├── pages/               # Page components (HomePage, GeneratePlanPage, PlansPage, etc)
+│       │   ├── services/            # API services (api.ts, auth.ts, subscription.ts)
 │       │   ├── hooks/               # Custom hooks (useAuth, useToast, useTheme)
-│       │   ├── utils/               # Validation & helper utilities
+│       │   ├── types/               # TypeScript interfaces
+│       │   ├── utils/               # Helper utilities & validation
+│       │   ├── App.tsx              # Root component
+│       │   ├── main.tsx             # Entry point
 │       │   └── index.css            # Global styles
 │       ├── dist/                    # Production build output
-│       └── package.json
+│       ├── index.html               # HTML template
+│       ├── package.json             # Frontend dependencies
+│       ├── tsconfig.json
+│       ├── vite.config.ts
+│       └── tailwind.config.js       # Tailwind CSS configuration
 │
-└── PROJECT_PRESENTATION_GUIDE.md      # Detailed feature documentation
+└── venv/                               # Python virtual environment
 ```
 
 ## 🔧 Development
