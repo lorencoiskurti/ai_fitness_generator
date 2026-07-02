@@ -1,0 +1,180 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-gray-50 dark:bg-slate-950 text-gray-900 dark:text-gray-100;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Smooth scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-50 dark:bg-slate-950;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 dark:bg-slate-700 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400 dark:bg-slate-600;
+}
+
+/* Glassmorphism effect */
+.glass-card {
+  @apply bg-white/85 dark:bg-slate-900/85 backdrop-blur-sm border border-white/20 dark:border-slate-700/30 shadow-glass;
+}
+
+/* Page transitions */
+.page-enter {
+  @apply opacity-0 translate-y-4;
+}
+.page-enter-active {
+  @apply opacity-100 translate-y-0 transition-all duration-300 ease-out;
+}
+.page-exit {
+  @apply opacity-100 translate-y-0;
+}
+.page-exit-active {
+  @apply opacity-0 translate-y-4 transition-all duration-300 ease-in;
+}
+
+/* Form focus styles */
+.input-focus {
+  @apply border-primary-500 ring-2 ring-primary-200 dark:ring-primary-900/50;
+}
+
+/* Button hover lift */
+.btn-lift {
+  @apply transition-transform duration-200;
+}
+.btn-lift:hover {
+  @apply translate-y-[-2px];
+}
+.btn-lift:active {
+  @apply translate-y-[0px];
+}
+
+/* Card hover animations */
+.card-hover {
+  @apply transition-all duration-300;
+}
+.card-hover:hover {
+  @apply shadow-lg translate-y-[-4px];
+}
+
+/* Fade in animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInFromRight 0.4s ease-out;
+}
+
+/* Stagger effect */
+.stagger > * {
+  @apply animate-fade-in-up;
+}
+.stagger > :nth-child(1) { animation-delay: 0.1s; }
+.stagger > :nth-child(2) { animation-delay: 0.2s; }
+.stagger > :nth-child(3) { animation-delay: 0.3s; }
+.stagger > :nth-child(4) { animation-delay: 0.4s; }
+.stagger > :nth-child(5) { animation-delay: 0.5s; }
+
+/* Prose styling for AI-generated content */
+.prose h3 {
+  @apply text-purple-600 dark:text-purple-200 font-bold mt-4 mb-2;
+}
+.prose h4 {
+  @apply text-purple-600 dark:text-purple-200 font-bold mt-3 mb-2;
+}
+.prose ul {
+  @apply list-none space-y-2;
+}
+.prose li {
+  @apply flex items-start gap-3;
+}
+.prose li::before {
+  content: '✓';
+  @apply text-emerald-500 dark:text-emerald-400 font-bold flex-shrink-0;
+}
+.prose li:before {
+  @apply text-emerald-500 dark:text-emerald-400;
+}
+.prose strong {
+  @apply text-purple-600 dark:text-purple-300;
+}
+
+/* Transition utilities */
+.transition-fast {
+  @apply transition-all duration-150;
+}
+.transition-smooth {
+  @apply transition-all duration-300;
+}
+
+/* Hide native number spinners - we use custom ones */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+/* Autofill styling */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px white inset !important;
+  box-shadow: 0 0 0 1000px white inset !important;
+}
+
+input:-webkit-autofill {
+  -webkit-text-fill-color: #111827 !important;
+}
+
+/* Dark mode autofill */
+.dark input:-webkit-autofill,
+.dark input:-webkit-autofill:hover,
+.dark input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #374151 inset !important;
+  box-shadow: 0 0 0 1000px #374151 inset !important;
+}
+
+.dark input:-webkit-autofill {
+  -webkit-text-fill-color: #f3f4f6 !important;
+}
